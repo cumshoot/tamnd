@@ -1,6 +1,6 @@
 #!/bin/bash
 URL=$1
-status_code=$(curl --write-out %{http_code} --silent --output /dev/null $1)
+status_code=$(curl --write-out %{http_code} --silent --output /dev/null $1 -L)
 
 if [[ "$status_code" -ne 200 ]] ; then
   echo "Site status on $1 changed to $status_code" | mail -s "SITE STATUS CHECKER" "email@gmail.com" -r "STATUS_CHECKER"
